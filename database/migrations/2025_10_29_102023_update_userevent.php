@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('event', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-            $table->string('name');
-             $table->json('company_id');
+
+        Schema::table('userevent', function (Blueprint $table) {
+            $table->softDeletes();
+          
         });
+        //
     }
 
     /**
@@ -24,6 +24,11 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('event');
+        Schema::table('userevent', function (Blueprint $table) {
+            $table->dropSoftDeletes();
+        });
+
+        
+        //
     }
 };

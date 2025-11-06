@@ -8,6 +8,9 @@ use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use App\Jobs\CheckUserLocationJob;
 use App\Jobs\checkspeedjob;
+use App\Jobs\mysqldumpjob;
+use App\Jobs\GenerateIncrementalSqlBackup;
+use App\Jobs\binaryrecoveryjob;
 
 class Kernel extends ConsoleKernel
 {
@@ -25,6 +28,9 @@ class Kernel extends ConsoleKernel
         //$schedule->command('check:late-entry')->dailyAt('11:36');
       //  $schedule->job(new CheckUserLocationJob)->everyMinute();
       //  $schedule->job(new checkspeedjob)->everyMinute();
+       // $schedule->job(new GenerateIncrementalSqlBackup)->everyMinute();
+        //$schedule->job(new mysqldumpjob)->everyMinute();
+        $schedule->job(new binaryrecoveryjob)->everyMinute();
 
         
     }
@@ -44,6 +50,7 @@ class Kernel extends ConsoleKernel
 
     protected $commands = [
     //\App\Console\Commands\checkstudententertime::class,
+    
 
 
 
